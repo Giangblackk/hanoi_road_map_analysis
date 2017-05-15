@@ -6,7 +6,7 @@ Created on Sun Apr 30 17:32:10 2017
 @author: giangblackk
 """
 
-from osgeo import ogr
+from osgeo import ogr, osr
 import networkx as nx
 import numpy as np
 
@@ -36,8 +36,12 @@ roadList = []
 self_loop_count = 0
 for feature in layer:
     geometry = feature.geometry()
+    geometry_projected = geometry.Clone()
+    target_srs = osr.SpatialReference()
+    target_srs.ImportFromProj4('+proj=utm +zone=48 +ellps=WGS84 +datum=WGS84 +units=m +no_defs ')
+    geometry_projected.TransformTo(target_srs)
+    feature_length = geometry_projected.Length()
     pointCount = geometry.GetPointCount()
-    
     ### first point ###########################################################
     firstPoint = (geometry.GetPoint(0)[0],geometry.GetPoint(0)[1])
     if not firstPoint in pointList:
@@ -77,11 +81,13 @@ for feature in layer:
         for attribute in attributeList:
             G[lastNodeID][firstNodeID][attribute] = feature.GetField(attribute) if feature.GetField(attribute) is not None else ''
         G[lastNodeID][firstNodeID]['middle'] = middlePointList
+        G[lastNodeID][firstNodeID]['length'] = feature_length
     elif feature.GetField('ONEWAY') == 'yes':
         G.add_edge(firstNodeID, lastNodeID)
         for attribute in attributeList:
             G[firstNodeID][lastNodeID][attribute] = feature.GetField(attribute) if feature.GetField(attribute) is not None else ''
         G[firstNodeID][lastNodeID]['middle'] = middlePointList
+        G[firstNodeID][lastNodeID]['length'] = feature_length
     else:
         G.add_edge(firstNodeID, lastNodeID)
         G.add_edge(lastNodeID, firstNodeID)
@@ -90,7 +96,8 @@ for feature in layer:
             G[lastNodeID][firstNodeID][attribute] = feature.GetField(attribute) if feature.GetField(attribute) is not None else ''
         G[firstNodeID][lastNodeID]['middle'] = middlePointList
         G[lastNodeID][firstNodeID]['middle'] = middlePointList
-    
+        G[firstNodeID][lastNodeID]['length'] = feature_length
+        G[lastNodeID][firstNodeID]['length'] = feature_length
     ### intersect processing ##################################################
     edges = G.edges()
     for edge in edges:
@@ -137,7 +144,7 @@ for node in G.nodes_iter():
 print('self_loop_count: ', self_loop_count)
 
 # nx.write_gexf(G,'./highway_line_singlepart.gexf')
-nx.write_gexf(G,'./highway_line_singlepart_new.gexf')
+nx.write_gexf(G,'./highway_line_singlepart_new_length.gexf')
 # nx.write_gexf(G,'./highway_line_singlepart_new_123.gexf')
 # create links between nodes
 # add metadata of links
