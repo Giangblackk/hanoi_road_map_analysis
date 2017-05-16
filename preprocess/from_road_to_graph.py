@@ -44,8 +44,7 @@ attributeList.remove('DISUSED')
 G = nx.DiGraph()
 nodeList = []
 i = 0
-roadList = []
-self_loop_count = 0
+
 for feature in layer:
     geometry = feature.geometry()
     geometry_projected = geometry.Clone()
@@ -182,7 +181,7 @@ print('self_loop_count: ', self_loop_count)
 # nx.write_gexf(G,'./highway_line_singlepart.gexf')
 # nx.write_gexf(G,'./highway_line_singlepart_new_length.gexf')
 # nx.write_gexf(G,'./highway_line_singlepart_new_123.gexf')
-nx.write_gexf(G,'./highway_line_singlepart_new_length.gexf')
+nx.write_gexf(G,'./graphdata/highway_line_singlepart_new_length.gexf')
 # create links between nodes
 # add metadata of links
 # save graph
