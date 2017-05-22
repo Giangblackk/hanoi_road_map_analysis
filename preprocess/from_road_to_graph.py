@@ -78,11 +78,17 @@ for feature in layer:
     
     ### if first point is same as last point, remove due to loop ##############
     if firstNodeID == lastNodeID or firstPoint == lastPoint:
+        G.remove_node(firstNodeID)
+        nodeList.remove(firstPoint)
         continue
     ### add edges between nodes ###############################################
     middlePointList = pointList[1:-1]
-    # if firstNodeID in middlePointList or lastNodeID in middlePointList:
-        # continue
+    if firstNodeID in middlePointList or lastNodeID in middlePointList:
+#        G.remove_node(firstNodeID)
+#        nodeList.remove(firstPoint)
+#        G.remove_node(lastNodeID)
+#        nodeList.remove(lastPoint)
+        continue
     ### create link ###########################################################
     if feature.GetField('ONEWAY') == '-1':
         G.add_edge(lastNodeID, firstNodeID)
@@ -107,8 +113,7 @@ for feature in layer:
         G[firstNodeID][lastNodeID]['length'] = feature_length
         G[lastNodeID][firstNodeID]['length'] = feature_length
     ### intersect processing ##################################################
-    edges = G.edges()
-    for edge in edges:
+    for edge in G.edges():
         headID = edge[0]
         tailID = edge[1]
         attributeDict = G[headID][tailID]
@@ -158,6 +163,11 @@ for feature in layer:
 for edge in G.edges_iter():
     G[edge[0]][edge[1]].pop('middle')
 
+### remove zeros neighbor nodes ###############################################
+for node in G.nodes():
+    if G.in_degree()[node] == 0 and G.out_degree()[node] == 0:
+        print(node)
+        G.remove_node(node)
 ### check if 2 node same lat long #############################################
 lat = G.node[0]['lat']
 lng = G.node[0]['lng']
