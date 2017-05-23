@@ -8,42 +8,66 @@
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="R_VN_NHW_Inventory20170516144214335" source="/home/giangblackk/Dropbox/DATN/hanoi_road_map_analysis/vietnam-highway/roaddata/R_VN_NHW_Inventory.shp" name="R_VN_NHW_Inventory">
       <customproperties/>
     </layer-tree-layer>
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="R_VN_NHW_Inventory_intersect_nodes20170516150436788" source="/home/giangblackk/Dropbox/DATN/hanoi_road_map_analysis/vietnam-highway/R_VN_NHW_Inventory_intersect_nodes.shp" name="R_VN_NHW_Inventory_intersect_nodes">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="VNM_adm120170522160457873" source="/home/giangblackk/Dropbox/DATN/hanoi_road_map_analysis/vietnam-map/VNM_adm_shp/VNM_adm1.shp" name="VNM_adm1">
+      <customproperties/>
+    </layer-tree-layer>
   </layer-tree-group>
   <relations/>
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>265486.11315589607693255</xmin>
-      <ymin>932413.97034127928782254</ymin>
-      <xmax>995393.91318568331189454</xmax>
-      <ymax>2614650.75492396391928196</ymax>
+      <xmin>11664944.72101951204240322</xmin>
+      <ymin>2300032.77384518412873149</ymin>
+      <xmax>11878974.64257503114640713</xmax>
+      <ymax>2752254.05478619365021586</ymax>
     </extent>
     <rotation>0</rotation>
-    <projections>0</projections>
+    <projections>1</projections>
     <destinationsrs>
       <spatialrefsys>
-        <proj4>+proj=utm +zone=48 +datum=WGS84 +units=m +no_defs</proj4>
-        <srsid>3132</srsid>
-        <srid>32648</srid>
-        <authid>EPSG:32648</authid>
-        <description>WGS 84 / UTM zone 48N</description>
-        <projectionacronym>utm</projectionacronym>
+        <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</proj4>
+        <srsid>3857</srsid>
+        <srid>3857</srid>
+        <authid>EPSG:3857</authid>
+        <description>WGS 84 / Pseudo Mercator</description>
+        <projectionacronym>merc</projectionacronym>
         <ellipsoidacronym>WGS84</ellipsoidacronym>
         <geographicflag>false</geographicflag>
       </spatialrefsys>
     </destinationsrs>
     <rendermaptile>0</rendermaptile>
-    <layer_coordinate_transform_info/>
+    <layer_coordinate_transform_info>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20170516150516754"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="VNM_adm120170522160457873"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="VNM_adm220170522161940425"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:32648" srcDatumTransform="-1" destDatumTransform="-1" layerid="R_VN_NHW_Inventory20170516144214335"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:32648" srcDatumTransform="-1" destDatumTransform="-1" layerid="R_VN_NHW_Inventory_intersect_nodes20170516150436788"/>
+    </layer_coordinate_transform_info>
   </mapcanvas>
   <layer-tree-canvas>
     <custom-order enabled="0">
       <item>R_VN_NHW_Inventory20170516144214335</item>
+      <item>R_VN_NHW_Inventory_intersect_nodes20170516150436788</item>
+      <item>VNM_adm120170522160457873</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="R_VN_NHW_Inventory" showFeatureCount="0">
       <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="R_VN_NHW_Inventory20170516144214335" visible="1"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="R_VN_NHW_Inventory_intersect_nodes" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="R_VN_NHW_Inventory_intersect_nodes20170516150436788" visible="1"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="VNM_adm1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="VNM_adm120170522160457873" visible="1"/>
       </filegroup>
     </legendlayer>
   </legend>
@@ -56,7 +80,7 @@
         <ymax>2574597.49814818520098925</ymax>
       </extent>
       <id>R_VN_NHW_Inventory20170516144214335</id>
-      <datasource>/home/giangblackk/Dropbox/DATN/hanoi_road_map_analysis/vietnam-highway/roaddata/R_VN_NHW_Inventory.shp</datasource>
+      <datasource>./roaddata/R_VN_NHW_Inventory.shp</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -236,7 +260,7 @@
               <prop k="customdash_unit" v="MM"/>
               <prop k="draw_inside_polygon" v="0"/>
               <prop k="joinstyle" v="bevel"/>
-              <prop k="line_color" v="144,128,236,255"/>
+              <prop k="line_color" v="223,17,38,255"/>
               <prop k="line_style" v="solid"/>
               <prop k="line_width" v="0.26"/>
               <prop k="line_width_unit" v="MM"/>
@@ -278,7 +302,7 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="OBJ_SQ" index="0" name=""/>
         <alias field="LINKCODE" index="1" name=""/>
@@ -332,13 +356,63 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="2">
-        <columns/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;LINKCODE&quot;" sortOrder="0">
+        <columns>
+          <column width="-1" hidden="0" type="field" name="OBJ_SQ"/>
+          <column width="-1" hidden="0" type="field" name="LINKCODE"/>
+          <column width="-1" hidden="0" type="field" name="LINKCODE_0"/>
+          <column width="-1" hidden="0" type="field" name="LENGTH"/>
+          <column width="-1" hidden="0" type="field" name="NUM_LANES"/>
+          <column width="-1" hidden="0" type="field" name="VELOCITY"/>
+          <column width="-1" hidden="0" type="field" name="SUB_SQ"/>
+          <column width="-1" hidden="0" type="field" name="ND1"/>
+          <column width="-1" hidden="0" type="field" name="ND2"/>
+          <column width="-1" hidden="0" type="field" name="LINKCODE0"/>
+          <column width="-1" hidden="0" type="field" name="SQ2"/>
+          <column width="-1" hidden="0" type="field" name="IDX_HDM"/>
+          <column width="-1" hidden="0" type="field" name="DIR_STRADA"/>
+          <column width="-1" hidden="0" type="field" name="SQ3"/>
+          <column width="-1" hidden="0" type="field" name="CAR_FARE"/>
+          <column width="-1" hidden="0" type="field" name="BUS_FARE"/>
+          <column width="-1" hidden="0" type="field" name="MC_FARE"/>
+          <column width="-1" hidden="0" type="field" name="IDX_HDM_1"/>
+          <column width="-1" hidden="0" type="field" name="ROAD_NAME"/>
+          <column width="-1" hidden="0" type="field" name="ROAD_CLASS"/>
+          <column width="-1" hidden="0" type="field" name="SURF_CLASS"/>
+          <column width="-1" hidden="0" type="field" name="PAVE_TYPE"/>
+          <column width="-1" hidden="0" type="field" name="LENGTH_1"/>
+          <column width="-1" hidden="0" type="field" name="CWAY_WIDTH"/>
+          <column width="-1" hidden="0" type="field" name="SHLD_WIDTH"/>
+          <column width="-1" hidden="0" type="field" name="NUM_LANE_1"/>
+          <column width="-1" hidden="0" type="field" name="MT_AADT"/>
+          <column width="-1" hidden="0" type="field" name="NM_AADT"/>
+          <column width="-1" hidden="0" type="field" name="AADT_YEAR"/>
+          <column width="-1" hidden="0" type="field" name="DIRECTION"/>
+          <column width="-1" hidden="0" type="field" name="RF"/>
+          <column width="-1" hidden="0" type="field" name="SUPERELEV"/>
+          <column width="-1" hidden="0" type="field" name="SPEED_LIM"/>
+          <column width="-1" hidden="0" type="field" name="RESMODULU"/>
+          <column width="-1" hidden="0" type="field" name="SN"/>
+          <column width="-1" hidden="0" type="field" name="ROUGHNESS"/>
+          <column width="-1" hidden="0" type="field" name="CRACKS_TOT"/>
+          <column width="-1" hidden="0" type="field" name="RUT_DEPTH"/>
+          <column width="-1" hidden="0" type="field" name="SKIDRESIST"/>
+          <column width="-1" hidden="0" type="field" name="LAST_CONST"/>
+          <column width="-1" hidden="0" type="field" name="LASTSURF"/>
+          <column width="-1" hidden="0" type="field" name="LAST_PRVNT"/>
+          <column width="-1" hidden="0" type="field" name="LAST_REHAB"/>
+          <column width="-1" hidden="0" type="field" name="PREV_ACA"/>
+          <column width="-1" hidden="0" type="field" name="PREV_ACW"/>
+          <column width="-1" hidden="0" type="field" name="PREV_NCT"/>
+          <column width="-1" hidden="0" type="field" name="DRAIN_TYPE"/>
+          <column width="-1" hidden="0" type="field" name="NH_Na"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -397,6 +471,286 @@
         <default field="DRAIN_TYPE" expression=""/>
         <default field="NH_Na" expression=""/>
       </defaults>
+      <previewExpression>COALESCE( "ROAD_NAME", '&lt;NULL>' )</previewExpression>
+    </maplayer>
+    <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>R_VN_NHW_Inventory_intersect_nodes20170516150436788</id>
+      <datasource>./R_VN_NHW_Inventory_intersect_nodes.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>R_VN_NHW_Inventory_intersect_nodes</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=utm +zone=48 +datum=WGS84 +units=m +no_defs</proj4>
+          <srsid>3132</srsid>
+          <srid>32648</srid>
+          <authid>EPSG:32648</authid>
+          <description>WGS 84 / UTM zone 48N</description>
+          <projectionacronym>utm</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="FID">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="219,156,162,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="2"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+      </renderer-v2>
+      <labeling type="simple"/>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>FID</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name="Ubuntu"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="FID" index="0" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="-469283040">
+        <columns/>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <defaults>
+        <default field="FID" expression=""/>
+      </defaults>
+      <previewExpression></previewExpression>
+    </maplayer>
+    <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <extent>
+        <xmin>102.14499664306646309</xmin>
+        <ymin>8.56333160400390625</ymin>
+        <xmax>109.46942901611356547</xmax>
+        <ymax>23.39273071289073869</ymax>
+      </extent>
+      <id>VNM_adm120170522160457873</id>
+      <datasource>../vietnam-map/VNM_adm_shp/VNM_adm1.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>VNM_adm1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="ID_0">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ISO">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NAME_0">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ID_1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NAME_1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="HASC_1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="CCN_1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="CCA_1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="TYPE_1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ENGTYPE_1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NL_NAME_1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="VARNAME_1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="50,251,28,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+      </renderer-v2>
+      <labeling type="simple"/>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>NAME_0</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name="Ubuntu"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <annotationform></annotationform>
+      <aliases>
+        <alias field="ID_0" index="0" name=""/>
+        <alias field="ISO" index="1" name=""/>
+        <alias field="NAME_0" index="2" name=""/>
+        <alias field="ID_1" index="3" name=""/>
+        <alias field="NAME_1" index="4" name=""/>
+        <alias field="HASC_1" index="5" name=""/>
+        <alias field="CCN_1" index="6" name=""/>
+        <alias field="CCA_1" index="7" name=""/>
+        <alias field="TYPE_1" index="8" name=""/>
+        <alias field="ENGTYPE_1" index="9" name=""/>
+        <alias field="NL_NAME_1" index="10" name=""/>
+        <alias field="VARNAME_1" index="11" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="2">
+        <columns/>
+      </attributetableconfig>
+      <editform></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <defaults>
+        <default field="ID_0" expression=""/>
+        <default field="ISO" expression=""/>
+        <default field="NAME_0" expression=""/>
+        <default field="ID_1" expression=""/>
+        <default field="NAME_1" expression=""/>
+        <default field="HASC_1" expression=""/>
+        <default field="CCN_1" expression=""/>
+        <default field="CCA_1" expression=""/>
+        <default field="TYPE_1" expression=""/>
+        <default field="ENGTYPE_1" expression=""/>
+        <default field="NL_NAME_1" expression=""/>
+        <default field="VARNAME_1" expression=""/>
+      </defaults>
       <previewExpression></previewExpression>
     </maplayer>
   </projectlayers>
@@ -409,6 +763,7 @@
       <ProjectCRSProj4String type="QString">+proj=longlat +datum=WGS84 +no_defs</ProjectCRSProj4String>
       <ProjectCrs type="QString">EPSG:4326</ProjectCrs>
       <ProjectCRSID type="int">3452</ProjectCRSID>
+      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
     </SpatialRefSys>
     <Paths>
       <Absolute type="bool">false</Absolute>
@@ -424,9 +779,35 @@
     </Gui>
     <Digitizing>
       <DefaultSnapToleranceUnit type="int">2</DefaultSnapToleranceUnit>
+      <LayerSnappingList type="QStringList">
+        <value>R_VN_NHW_Inventory20170516144214335</value>
+        <value>R_VN_NHW_Inventory_intersect_nodes20170516150436788</value>
+        <value>VNM_adm120170522160457873</value>
+      </LayerSnappingList>
+      <LayerSnappingEnabledList type="QStringList">
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+      </LayerSnappingEnabledList>
       <SnappingMode type="QString">current_layer</SnappingMode>
+      <AvoidIntersectionsList type="QStringList"/>
+      <LayerSnappingToleranceUnitList type="QStringList">
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
+      </LayerSnappingToleranceUnitList>
+      <LayerSnapToList type="QStringList">
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+      </LayerSnapToList>
       <DefaultSnapType type="QString">off</DefaultSnapType>
       <DefaultSnapTolerance type="double">0</DefaultSnapTolerance>
+      <LayerSnappingToleranceList type="QStringList">
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+      </LayerSnappingToleranceList>
     </Digitizing>
     <PositionPrecision>
       <DecimalPlaces type="int">2</DecimalPlaces>
