@@ -41,9 +41,13 @@ nodeList = []
 i = 0
 for feature in layer:
     geometry = feature.geometry()
+    feature_length = geometry.Length()
     geometry.TransformTo(target_srs)
     pointCount = geometry.GetPointCount()
     pointList = geometry.GetPoints()
+    pointList = np.around(np.array(pointList),decimals=10)
+    pointList =  list(map(tuple, pointList))
+    pointList = [tuple(map(float, point)) for point in pointList]
     ### first point ###########################################################
     firstPoint = pointList[0]
     if not firstPoint in nodeList:
@@ -53,7 +57,7 @@ for feature in layer:
         i = i + 1
     else:
         for nodeidx in G.nodes_iter():
-            if G.node[nodeidx]['lng'] == firstPoint[0] and G.node[nodeidx]['lat'] == firstPoint[1]:
+            if G.node[nodeidx]['lng'] == float(firstPoint[0]) and G.node[nodeidx]['lat'] == float(firstPoint[1]):
                 firstNodeID = nodeidx
     ### last point ############################################################
     lastPoint = pointList[-1]
@@ -64,12 +68,66 @@ for feature in layer:
         i = i + 1
     else:
         for nodeidx in G.nodes_iter():
-            if G.node[nodeidx]['lng'] == lastPoint[0] and G.node[nodeidx]['lat'] == lastPoint[1]:
+            if G.node[nodeidx]['lng'] == float(lastPoint[0]) and G.node[nodeidx]['lat'] == float(lastPoint[1]):
                 lastNodeID = nodeidx
+    # create middle list
+    middlePointList = pointList[1:-1]
+    ### add edge between points ###############################################
     G.add_edge(lastNodeID, firstNodeID)
     for attribute in attributeList:
         G[lastNodeID][firstNodeID][attribute] = feature.GetField(attribute) if feature.GetField(attribute) is not None else ''
-
+        G[lastNodeID][firstNodeID]['length'] = feature_length
+        # add middle list to edge attribute
+        G[lastNodeID][firstNodeID]['middle'] = middlePointList[::-1]
+    ### intersect processing ##################################################
+    for edge in G.edges():
+        headID = edge[0]
+        tailID = edge[1]
+        attributeDict = G[headID][tailID]
+        middle = attributeDict['middle']
+        if firstPoint in middle:
+            if headID == firstNodeID or firstNodeID == tailID:
+                continue
+            indexFirstPoint = middle.index(firstPoint)
+            # copy attributes
+            attributeDictPart1 = attributeDict.copy()
+            attributeDictPart2 = attributeDict.copy()
+            # recalculate middle
+            attributeDictPart1['middle'] = middle[0:indexFirstPoint]
+            attributeDictPart2['middle'] = middle[indexFirstPoint+1:]
+            # recalucate length
+            roadPart1 = [(G.node[headID]['lng'],G.node[headID]['lat'])]
+            roadPart1.extend(middle[0:indexFirstPoint+1])
+            roadPart2 = middle[indexFirstPoint:]
+            roadPart2.append((G.node[tailID]['lng'],G.node[tailID]['lat']))
+            attributeDictPart1['length'] = calculateGeometryLength(roadPart1,source_srs,target_srs)
+            attributeDictPart2['length'] = calculateGeometryLength(roadPart2,source_srs,target_srs)
+            G.remove_edge(headID, tailID)
+            G.add_edge(headID, firstNodeID, attr_dict=attributeDictPart1)
+            G.add_edge(firstNodeID, tailID, attr_dict=attributeDictPart2)
+        elif lastPoint in middle:
+            if headID == lastNodeID or lastNodeID == tailID:
+                continue
+            indexLastPoint = middle.index(lastPoint)
+            # copy attributes
+            attributeDictPart1 = attributeDict.copy()
+            attributeDictPart2 = attributeDict.copy()
+            # recalculate middle
+            attributeDictPart1['middle'] = middle[0:indexLastPoint]
+            attributeDictPart2['middle'] = middle[indexLastPoint+1:]
+            # recalculate length
+            roadPart1 = [(G.node[headID]['lng'],G.node[headID]['lat'])]
+            roadPart1.extend(middle[0:indexLastPoint+1])
+            roadPart2 = middle[indexLastPoint:]
+            roadPart2.append((G.node[tailID]['lng'],G.node[tailID]['lat']))
+            attributeDictPart1['length'] = calculateGeometryLength(roadPart1,source_srs,target_srs)
+            attributeDictPart2['length'] = calculateGeometryLength(roadPart2,source_srs,target_srs)
+            G.remove_edge(headID, tailID)
+            G.add_edge(headID, lastNodeID, attr_dict=attributeDictPart1)
+            G.add_edge(lastNodeID, tailID, attr_dict=attributeDictPart2)
+### remove middle properties ##################################################
+for edge in G.edges_iter():
+    G[edge[0]][edge[1]].pop('middle')
 ### check if 2 node same lat long #############################################
 lat = G.node[0]['lat']
 lng = G.node[0]['lng']
@@ -89,8 +147,11 @@ for node in G.nodes_iter():
         self_loop_count += 1
         print(node, G.neighbors(node))
 print('self_loop_count: ', self_loop_count)
-
-nx.write_gexf(G,'./R_VN_NHW_Inventory.gexf')
-
+### remove little connected components due to wrong input data ################
+connected_components = list(nx.connected_component_subgraphs(G))
+G2 = connected_components[0]
+### write graph to file #######################################################
+nx.write_gexf(G2,'./R_VN_NHW_Inventory_1_connected_component.gexf')
+#nx.write_graphml(G2,'./R_VN_NHW_Inventory_1_connected_component.graphml')
 layer = None
 dataSource = None

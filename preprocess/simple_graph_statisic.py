@@ -2,7 +2,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
 
-G = nx.read_gexf('/home/giangblackk/Dropbox/DATN/hanoi_road_map_analysis/preprocess/graphdata/highway_line_singlepart_new_length.gexf')
+G = nx.read_gexf('./graphdata/highway_line_singlepart_new_length.gexf')
 G2 = nx.Graph(G)
 
 # histogram
@@ -55,7 +55,7 @@ def autolabel(rects):
     for rect in rects:
         height = rect.get_height()
         ax.text(rect.get_x() + rect.get_width()/2., 1.005*height,
-                '%d' % int(height),
+                '%.2f' % round(height,2),
                 ha='center', va='bottom',fontweight='bold')
 
 autolabel(rects1)
